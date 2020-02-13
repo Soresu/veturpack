@@ -14,25 +14,34 @@
 </template>
 
 <script>
-import * as _ from 'lodash'
+import * as _ from 'lodash';
 
 export default {
-  data () {
+  data() {
     return {
       msg: 'Vetur means "Winter" in icelandic.'
-    }
+    };
   },
   computed: {
-    count () {
-      return this.$store.state.count
+    count() {
+      // Intellisense NOT working after "this."
+      return this.$store.state.count;
+    },
+    zero() {
+      // Intellisense NOT working after this, because "count" returns a property from "this"
+      let num = this.$store.state.count;
+      return 0;
     }
   },
   methods: {
-    hello () {
-      console.log(this.msg)
+    hello() {
+      // Intellisense working after "this."
+      console.log(this.msg);
     }
-  }
-}
+  },
+  // If you comment "props" out, the intellisense will work again in computed
+  props: {}
+};
 </script>
 
 <style lang="scss" scoped>
